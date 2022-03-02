@@ -16,6 +16,8 @@ defmodule PipelineCi.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       alias PipelineCi.Repo
@@ -28,10 +30,10 @@ defmodule PipelineCi.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PipelineCi.Repo)
+    :ok = Sandbox.checkout(PipelineCi.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PipelineCi.Repo, {:shared, self()})
+      Sandbox.mode(PipelineCi.Repo, {:shared, self()})
     end
 
     :ok

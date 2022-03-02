@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :pipeline_ci,
   ecto_repos: [PipelineCi.Repo]
