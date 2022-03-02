@@ -17,11 +17,11 @@ jobs:
           otp-version: ${{ matrix.otp }}
       - uses: actions/cache@v1
         id: mix-cache-format
-          with:
-            path: deps
-            key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+        with:
+          path: deps
+          key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
       - name: Install Mix Dependencies
-          if: steps.mix-cache-format.outputs.cache-hit != 'true'
-          run: mix deps.get
+        if: steps.mix-cache-format.outputs.cache.hit != 'true'
+        run: mix deps.get
       - name: ===> FORMAT
         run: mix format --check-formatted
