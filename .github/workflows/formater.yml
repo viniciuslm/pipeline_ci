@@ -1,24 +1,25 @@
-name: Verify Format
+git name: Verify Format
 on: pull_request
-job: 
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      elixir: [1.13]
-      otp: [24]
-  step:
-    - users: action/checkout@v2
-    - users: erlef/setup-elixir@v1
-      with: 
-        elixir-version: ${{ matrix.elixir }}
-        otp-version: ${{ matrix.otp }}
-    - users: action/cache@v1
-      id: mix-cache-format
-      with: 
-        path: deps
-        key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hasfiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
-    - name: Install Mix Dependencies
-      if: steps.mix-cache-format.outputs.cache-hit != 'true'
-      run: mix deps.get
-    - name: ===> Format
-      run: mix format --check-formatted
+jobs: 
+  check-format
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.13]
+        otp: [24]
+    step:
+      - users: action/checkout@v2
+      - users: erlef/setup-elixir@v1
+        with: 
+          elixir-version: ${{ matrix.elixir }}
+          otp-version: ${{ matrix.otp }}
+      - users: action/cache@v1
+        id: mix-cache-format
+        with: 
+          path: deps
+          key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hasfiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+      - name: Install Mix Dependencies
+        if: steps.mix-cache-format.outputs.cache-hit != 'true'
+        run: mix deps.get
+      - name: ===> Format
+        run: mix format --check-formatted
