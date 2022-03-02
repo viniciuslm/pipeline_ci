@@ -1,19 +1,19 @@
-git name: Verify Format
+name: Verify Format
 on: pull_request
 jobs: 
-  check-format
+  check-format:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         elixir: [1.13]
         otp: [24]
-    step:
-      - users: action/checkout@v2
-      - users: erlef/setup-elixir@v1
+    steps:
+      - uses: action/checkout@v2
+      - uses: erlef/setup-elixir@v1
         with: 
           elixir-version: ${{ matrix.elixir }}
           otp-version: ${{ matrix.otp }}
-      - users: action/cache@v1
+      - uses: action/cache@v1
         id: mix-cache-format
         with: 
           path: deps
