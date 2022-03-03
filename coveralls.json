@@ -1,0 +1,15 @@
+{
+    "skip_files" : [
+        "lib/pipeline_ci/application.ex",
+        "lib/pipeline_ci_web.ex",
+        "lib/pipeline_ci_web/views/error_helpers.ex",
+        "lib/pipeline_ci_web/telemetry.ex",
+        "test/support/channel_case.ex",
+        "test/support/data_case.ex",
+        "lib/pipeline_ci_web/live/page_live.ex",
+        "lib/pipeline_ci_web/channels/user_socket"
+    ],
+    "treat_no_relevant_line_as_covered": true,
+    "output_dir": "cover/",
+    "minimum_coverage": 95
+}

@@ -1,5 +1,6 @@
 defmodule PipelineCiWeb.PageLive do
-  @moduledoc "PipelineCiWeb.PageLive."
+  @moduledoc false
+
   use PipelineCiWeb, :live_view
 
   @impl true
