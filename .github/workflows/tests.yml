@@ -28,7 +28,7 @@ jobs:
           mix deps.get
           mix ecto.create
       - name: ===> Verify Coverage and Tests
-        run: mix coverall.html 
+        run: mix coveralls.html 
     services: 
       pg:
         image: postgres:13 
