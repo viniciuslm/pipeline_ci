@@ -3,7 +3,7 @@ name: Verify LINT
 on: pull_request
 
 jobs: 
-  check_lint:
+  lint:
     runs-on: ubuntu-latest 
     strategy:
       matrix:
