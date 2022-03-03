@@ -1,5 +1,5 @@
 defmodule PipelineCiWeb.Telemetry do
-  @moduledoc "PipelineCiWeb.Telemetry."
+  @moduledoc false
 
   use Supervisor
   import Telemetry.Metrics
